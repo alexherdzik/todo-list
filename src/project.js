@@ -28,6 +28,7 @@ const Project = (id, name) => {
     }
 
     return {
+        getId,
         getName,
         setName,
         getTodos,
