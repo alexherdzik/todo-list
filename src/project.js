@@ -1,6 +1,9 @@
+import Todo from './todo'
+
 const Project = (id, name) => {
     let _id = id;
     let _name = name;
+    let _todoId = 0;
     const _todos = [];
 
     const getId = () => {
@@ -19,8 +22,8 @@ const Project = (id, name) => {
         return _todos;
     }
 
-    const addTodo = todo => {
-        _todos.push(todo);
+    const addTodo = descr => {
+        _todos.push(Todo(++_todoId, descr));
     }
 
     const deleteTodo = id => {

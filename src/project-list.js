@@ -3,9 +3,18 @@ import Project from './project'
 const projectList = (() => {
     const _projects = [];
     let _projectId = 0;
+    let _activeProject;
 
     const getProjects = () => {
         return _projects;
+    }
+
+    const getActiveProject = () => {
+        return _activeProject;
+    }
+
+    const setActiveProject = project => {
+        _activeProject = project;
     }
 
     const getProjectById = id => {
@@ -22,6 +31,8 @@ const projectList = (() => {
 
     return {
         getProjects,
+        getActiveProject,
+        setActiveProject,
         getProjectById,
         addProject,
         deleteProject
