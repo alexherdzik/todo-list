@@ -3,6 +3,7 @@ import dom from './dom'
 
 const controller = ((projectList, dom) => {
     const _userProjectList = document.getElementById('user-project-list');
+    const _todoList = document.getElementById('todo-list');
     const _addProjectBtn = document.getElementById('add-project');
     const _addTodoBtn = document.getElementById('add-todo');
     
@@ -20,6 +21,20 @@ const controller = ((projectList, dom) => {
                     break;
                 case 'delete':
                     _deleteProject(id);
+                    break;
+            }
+        });
+
+        _todoList.addEventListener('click', event => {
+            const target = event.target;
+            const id = +target.closest('li').dataset.id;
+
+            switch (target.dataset.action) {
+                case 'edit':
+                    _editTodo(id);
+                    break;
+                case 'delete':
+                    _deleteTodo(id);
                     break;
             }
         });
@@ -54,6 +69,18 @@ const controller = ((projectList, dom) => {
     const _deleteProject = id => {
         projectList.deleteProject(id);
         dom.renderProjectList(projectList);
+    }
+
+    const _editTodo = id => {
+        const project = projectList.getActiveProject();
+        const todo = project.getTodoById(id);
+        const descr = prompt('descr');
+        todo.setDescr(descr);
+        dom.renderProject(project);
+    }
+
+    const _deleteTodo = id => {
+
     }
 
     return {

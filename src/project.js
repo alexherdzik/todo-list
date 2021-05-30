@@ -22,6 +22,10 @@ const Project = (id, name) => {
         return _todos;
     }
 
+    const getTodoById = id => {
+        return _todos.find(todo => todo.getId() === id);
+    }
+
     const addTodo = descr => {
         _todos.push(Todo(++_todoId, descr));
     }
@@ -35,6 +39,7 @@ const Project = (id, name) => {
         getName,
         setName,
         getTodos,
+        getTodoById,
         addTodo,
         deleteTodo
     };
