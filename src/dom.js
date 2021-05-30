@@ -2,17 +2,17 @@ const dom = (() => {
     const userProjectList = document.getElementById('user-project-list');
     const todoList = document.getElementById('todo-list');
 
-    const updateProjects = (projectList) => {
+    const renderProjectList = (projectList) => {
         const projects = projectList.getProjects();
         
         _clearProjects();
 
         projects.forEach(project => {
-            userProjectList.appendChild(_createProject(project));
+            _renderProjectItem(project);
         });
     }
 
-    const _createProject = project => {
+    const _renderProjectItem = project => {
         const li = document.createElement('li');
         li.dataset.id = project.getId();
 
@@ -33,7 +33,7 @@ const dom = (() => {
         delBtn.textContent = 'Delete';
         li.appendChild(delBtn);
 
-        return li;
+        userProjectList.appendChild(li);
     }
 
     const renderProject = project => {
@@ -78,7 +78,7 @@ const dom = (() => {
     }
 
     return {
-        updateProjects,
+        renderProjectList,
         renderProject
     }
 })();

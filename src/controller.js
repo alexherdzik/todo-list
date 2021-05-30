@@ -27,7 +27,7 @@ const controller = ((projectList, dom) => {
         _addProjectBtn.addEventListener('click', () => {
             const projectName = prompt('project name');
             projectList.addProject(projectName);
-            dom.updateProjects(projectList);
+            dom.renderProjectList(projectList);
         });
 
         _addTodoBtn.addEventListener('click', () => {
@@ -48,12 +48,12 @@ const controller = ((projectList, dom) => {
         const project = projectList.getProjectById(id);
         const projectName = prompt('project name');
         project.setName(projectName);
-        dom.updateProjects(projectList);
+        dom.renderProjectList(projectList);
     }
 
     const _deleteProject = id => {
         projectList.deleteProject(id);
-        dom.updateProjects(projectList);
+        dom.renderProjectList(projectList);
     }
 
     return {
