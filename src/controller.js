@@ -80,7 +80,9 @@ const controller = ((projectList, dom) => {
     }
 
     const _deleteTodo = id => {
-
+        const project = projectList.getActiveProject();
+        project.deleteTodo(id);
+        dom.renderProject(project);
     }
 
     return {
