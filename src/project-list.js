@@ -1,9 +1,14 @@
 import Project from './project'
 
 const projectList = (() => {
+    const _inbox = Project(-1, 'inbox');
     const _projects = [];
     let _projectId = 0;
-    let _activeProject;
+    let _activeProject = _inbox;
+
+    const getInbox = () => {
+        return _inbox;
+    }
 
     const getProjects = () => {
         return _projects;
@@ -30,6 +35,7 @@ const projectList = (() => {
     }
 
     return {
+        getInbox,
         getProjects,
         getActiveProject,
         setActiveProject,

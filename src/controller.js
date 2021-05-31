@@ -2,12 +2,17 @@ import projectList from './project-list'
 import dom from './dom'
 
 const controller = ((projectList, dom) => {
+    const _inboxBtn = document.getElementById('inbox');
     const _userProjectList = document.getElementById('user-project-list');
     const _todoList = document.getElementById('todo-list');
     const _addProjectBtn = document.getElementById('add-project');
     const _addTodoBtn = document.getElementById('add-todo');
     
     const initEventListeners = () => {
+        _inboxBtn.addEventListener('click', () => {
+            _openInbox();
+        });
+
         _userProjectList.addEventListener('click', event => {
             const target = event.target;
             const id = +target.closest('li').dataset.id;
@@ -51,6 +56,12 @@ const controller = ((projectList, dom) => {
             project.addTodo(todoDescr);
             dom.renderProject(project);
         });
+    }
+
+    const _openInbox = () => {
+        const inbox = projectList.getInbox();
+        projectList.setActiveProject(inbox);
+        dom.renderProject(inbox);
     }
 
     const _openProject = id => {
