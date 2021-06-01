@@ -1,0 +1,35 @@
+:root {
+    --blue: #001440;
+    --orange-light: #8C470E;
+    --orange-dark: #401F03;
+    --yellow-light: #8C800E;
+    --yellow-dark: #403A03;
+    --white: #FFF;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-size: 16px;
+}
+
+p {
+    margin: 0;
+}
+
+.navbar {
+    background-color: var(--blue);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .8rem 1.875rem;
+}
+
+.title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.25rem;
+}
