@@ -1,86 +1,86 @@
 const dom = (() => {
-    const userProjectList = document.getElementById('user-project-list');
-    const todoList = document.getElementById('todo-list');
+  const userProjectList = document.getElementById("user-project-list");
+  const todoList = document.getElementById("todo-list");
 
-    const renderProjectList = (projectList) => {
-        const projects = projectList.getProjects();
-        
-        _clearProjects();
+  const renderProjectList = (projectList) => {
+    const projects = projectList.getProjects();
 
-        projects.forEach(project => {
-            _renderProjectItem(project);
-        });
-    }
+    _clearProjects();
 
-    const _renderProjectItem = project => {
-        const li = document.createElement('li');
-        li.dataset.id = project.getId();
+    projects.forEach((project) => {
+      _renderProjectItem(project);
+    });
+  };
 
-        const projectBtn = document.createElement('button');
-        projectBtn.dataset.action = 'open';
-        projectBtn.textContent = project.getName();
-        li.appendChild(projectBtn);
+  const _renderProjectItem = (project) => {
+    const li = document.createElement("li");
+    li.dataset.id = project.getId();
 
-        //edit btn
-        const editBtn = document.createElement('button');
-        editBtn.dataset.action = 'edit';
-        editBtn.textContent = 'Edit';
-        li.appendChild(editBtn);
+    const projectBtn = document.createElement("button");
+    projectBtn.dataset.action = "open";
+    projectBtn.textContent = project.getName();
+    li.appendChild(projectBtn);
 
-        //delete btn
-        const delBtn = document.createElement('button');
-        delBtn.dataset.action = 'delete';
-        delBtn.textContent = 'Delete';
-        li.appendChild(delBtn);
+    //edit btn
+    const editBtn = document.createElement("button");
+    editBtn.dataset.action = "edit";
+    editBtn.textContent = "Edit";
+    li.appendChild(editBtn);
 
-        userProjectList.appendChild(li);
-    }
+    //delete btn
+    const delBtn = document.createElement("button");
+    delBtn.dataset.action = "delete";
+    delBtn.textContent = "Delete";
+    li.appendChild(delBtn);
 
-    const renderProject = project => {
-        _clearProject();
+    userProjectList.appendChild(li);
+  };
 
-        const todos = project.getTodos();
-        todos.forEach(todo => {
-            _renderTodo(todo);
-        });
-    }
+  const renderProject = (project) => {
+    _clearProject();
 
-    const _renderTodo = todo => {
-        const li = document.createElement('li');
-        li.dataset.id = todo.getId();
+    const todos = project.getTodos();
+    todos.forEach((todo) => {
+      _renderTodo(todo);
+    });
+  };
 
-        const descr = document.createElement('span');
-        descr.textContent = todo.getDescr();
+  const _renderTodo = (todo) => {
+    const li = document.createElement("li");
+    li.dataset.id = todo.getId();
 
-        li.appendChild(descr);
+    const descr = document.createElement("span");
+    descr.textContent = todo.getDescr();
 
-        //edit btn
-        const editBtn = document.createElement('button');
-        editBtn.dataset.action = 'edit';
-        editBtn.textContent = 'Edit';
-        li.appendChild(editBtn);
+    li.appendChild(descr);
 
-        //delete btn
-        const delBtn = document.createElement('button');
-        delBtn.dataset.action = 'delete';
-        delBtn.textContent = 'Delete';
-        li.appendChild(delBtn);
+    //edit btn
+    const editBtn = document.createElement("button");
+    editBtn.dataset.action = "edit";
+    editBtn.textContent = "Edit";
+    li.appendChild(editBtn);
 
-        todoList.appendChild(li);
-    }
+    //delete btn
+    const delBtn = document.createElement("button");
+    delBtn.dataset.action = "delete";
+    delBtn.textContent = "Delete";
+    li.appendChild(delBtn);
 
-    const _clearProjects = () => {
-        userProjectList.textContent = '';
-    }
+    todoList.appendChild(li);
+  };
 
-    const _clearProject = () => {
-        todoList.textContent = '';
-    }
+  const _clearProjects = () => {
+    userProjectList.textContent = "";
+  };
 
-    return {
-        renderProjectList,
-        renderProject
-    }
+  const _clearProject = () => {
+    todoList.textContent = "";
+  };
+
+  return {
+    renderProjectList,
+    renderProject,
+  };
 })();
 
-export default dom
+export default dom;

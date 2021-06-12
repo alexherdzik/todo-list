@@ -1,104 +1,104 @@
-import projectList from './project-list'
-import dom from './dom'
+import projectList from "./project-list";
+import dom from "./dom";
 
 const controller = ((projectList, dom) => {
-    const _inboxBtn = document.getElementById('inbox');
-    const _userProjectList = document.getElementById('user-project-list');
-    const _todoList = document.getElementById('todo-list');
-    const _addProjectBtn = document.getElementById('add-project');
-    const _addTodoBtn = document.getElementById('add-todo');
-    
-    const initEventListeners = () => {
-        _inboxBtn.addEventListener('click', () => {
-            _openInbox();
-        });
+  const _inboxBtn = document.getElementById("inbox");
+  const _userProjectList = document.getElementById("user-project-list");
+  const _todoList = document.getElementById("todo-list");
+  const _addProjectBtn = document.getElementById("add-project");
+  const _addTodoBtn = document.getElementById("add-todo");
 
-        _userProjectList.addEventListener('click', event => {
-            const target = event.target;
-            const id = +target.closest('li').dataset.id;
+  const initEventListeners = () => {
+    _inboxBtn.addEventListener("click", () => {
+      _openInbox();
+    });
 
-            switch (target.dataset.action) {
-                case 'open':
-                    _openProject(id);
-                    break;
-                case 'edit':
-                    _editProject(id);
-                    break;
-                case 'delete':
-                    _deleteProject(id);
-                    break;
-            }
-        });
+    _userProjectList.addEventListener("click", (event) => {
+      const target = event.target;
+      const id = +target.closest("li").dataset.id;
 
-        _todoList.addEventListener('click', event => {
-            const target = event.target;
-            const id = +target.closest('li').dataset.id;
+      switch (target.dataset.action) {
+        case "open":
+          _openProject(id);
+          break;
+        case "edit":
+          _editProject(id);
+          break;
+        case "delete":
+          _deleteProject(id);
+          break;
+      }
+    });
 
-            switch (target.dataset.action) {
-                case 'edit':
-                    _editTodo(id);
-                    break;
-                case 'delete':
-                    _deleteTodo(id);
-                    break;
-            }
-        });
+    _todoList.addEventListener("click", (event) => {
+      const target = event.target;
+      const id = +target.closest("li").dataset.id;
 
-        _addProjectBtn.addEventListener('click', () => {
-            const projectName = prompt('project name');
-            projectList.addProject(projectName);
-            dom.renderProjectList(projectList);
-        });
+      switch (target.dataset.action) {
+        case "edit":
+          _editTodo(id);
+          break;
+        case "delete":
+          _deleteTodo(id);
+          break;
+      }
+    });
 
-        _addTodoBtn.addEventListener('click', () => {
-            const project = projectList.getActiveProject();
-            const todoDescr = prompt('descr');
-            project.addTodo(todoDescr);
-            dom.renderProject(project);
-        });
-    }
+    _addProjectBtn.addEventListener("click", () => {
+      const projectName = prompt("project name");
+      projectList.addProject(projectName);
+      dom.renderProjectList(projectList);
+    });
 
-    const _openInbox = () => {
-        const inbox = projectList.getInbox();
-        projectList.setActiveProject(inbox);
-        dom.renderProject(inbox);
-    }
+    _addTodoBtn.addEventListener("click", () => {
+      const project = projectList.getActiveProject();
+      const todoDescr = prompt("descr");
+      project.addTodo(todoDescr);
+      dom.renderProject(project);
+    });
+  };
 
-    const _openProject = id => {
-        const project = projectList.getProjectById(id);
-        projectList.setActiveProject(project);
-        dom.renderProject(project);
-    }
+  const _openInbox = () => {
+    const inbox = projectList.getInbox();
+    projectList.setActiveProject(inbox);
+    dom.renderProject(inbox);
+  };
 
-    const _editProject = id => {
-        const project = projectList.getProjectById(id);
-        const projectName = prompt('project name');
-        project.setName(projectName);
-        dom.renderProjectList(projectList);
-    }
+  const _openProject = (id) => {
+    const project = projectList.getProjectById(id);
+    projectList.setActiveProject(project);
+    dom.renderProject(project);
+  };
 
-    const _deleteProject = id => {
-        projectList.deleteProject(id);
-        dom.renderProjectList(projectList);
-    }
+  const _editProject = (id) => {
+    const project = projectList.getProjectById(id);
+    const projectName = prompt("project name");
+    project.setName(projectName);
+    dom.renderProjectList(projectList);
+  };
 
-    const _editTodo = id => {
-        const project = projectList.getActiveProject();
-        const todo = project.getTodoById(id);
-        const descr = prompt('descr');
-        todo.setDescr(descr);
-        dom.renderProject(project);
-    }
+  const _deleteProject = (id) => {
+    projectList.deleteProject(id);
+    dom.renderProjectList(projectList);
+  };
 
-    const _deleteTodo = id => {
-        const project = projectList.getActiveProject();
-        project.deleteTodo(id);
-        dom.renderProject(project);
-    }
+  const _editTodo = (id) => {
+    const project = projectList.getActiveProject();
+    const todo = project.getTodoById(id);
+    const descr = prompt("descr");
+    todo.setDescr(descr);
+    dom.renderProject(project);
+  };
 
-    return {
-        initEventListeners
-    }
+  const _deleteTodo = (id) => {
+    const project = projectList.getActiveProject();
+    project.deleteTodo(id);
+    dom.renderProject(project);
+  };
+
+  return {
+    initEventListeners,
+  };
 })(projectList, dom);
 
-export default controller
+export default controller;
