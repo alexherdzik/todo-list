@@ -4,20 +4,27 @@
         <meta charset="utf-8">
         <title>Todo List</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="./style.css">
     </head>
     <body>
-        <div id="side">
-            <ul id="project-list">
-                <li><div><button id="inbox">Inbox</button></div></li>
-            </ul>
-            <ul id="user-project-list"></ul>
-            <button id="add-project">Add Project</button>
-        </div>
-        <div id="main">
-            <ul id="todo-list"></ul>
-            <button id="add-todo">Add Todo</button>
-        </div>    
+        <header>
+            <nav class="navbar">
+                <p class="title">Todo List</p>
+            </nav>
+        </header>
+        <main>
+            <div id="side">
+                <ul id="project-list">
+                    <li><div><button id="inbox">Inbox</button></div></li>
+                </ul>
+                <ul id="user-project-list"></ul>
+                <button id="add-project">Add Project</button>
+            </div>
+            <div id="main">
+                <ul id="todo-list"></ul>
+                <button id="add-todo">Add Todo</button>
+            </div>
+        </main>    
         <script src="./main.js" async defer></script>
     </body>
 </html>

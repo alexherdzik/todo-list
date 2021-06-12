@@ -46,15 +46,21 @@ const controller = ((projectList, dom) => {
 
     _addProjectBtn.addEventListener("click", () => {
       const projectName = prompt("project name");
-      projectList.addProject(projectName);
-      dom.renderProjectList(projectList);
+
+      if (projectName) {
+        projectList.addProject(projectName);
+        dom.renderProjectList(projectList);
+      }
     });
 
     _addTodoBtn.addEventListener("click", () => {
       const project = projectList.getActiveProject();
       const todoDescr = prompt("descr");
-      project.addTodo(todoDescr);
-      dom.renderProject(project);
+
+      if (todoDescr) {
+        project.addTodo(todoDescr);
+        dom.renderProject(project);
+      }
     });
   };
 
@@ -73,8 +79,11 @@ const controller = ((projectList, dom) => {
   const _editProject = (id) => {
     const project = projectList.getProjectById(id);
     const projectName = prompt("project name");
-    project.setName(projectName);
-    dom.renderProjectList(projectList);
+
+    if (projectName) {
+      project.setName(projectName);
+      dom.renderProjectList(projectList);
+    }
   };
 
   const _deleteProject = (id) => {
@@ -86,8 +95,11 @@ const controller = ((projectList, dom) => {
     const project = projectList.getActiveProject();
     const todo = project.getTodoById(id);
     const descr = prompt("descr");
-    todo.setDescr(descr);
-    dom.renderProject(project);
+
+    if (descr) {
+      todo.setDescr(descr);
+      dom.renderProject(project);
+    }
   };
 
   const _deleteTodo = (id) => {
